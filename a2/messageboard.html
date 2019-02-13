@@ -1,0 +1,38 @@
+<!--
+  Austin Heinrich
+-->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Message Board </title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+        function upload() {
+          var aBoard;
+          aBoard = document.getElementById("newboard").value;
+
+          document.getElementById("newboard").value = "";
+        }
+
+
+    </script>
+
+    <h1 id="topper"> <b>Message Board</b> </h1>
+
+    <textarea id="newboard" rows="10" cols="45"></textarea>
+    <p></p>
+
+    <select id="selectboard" rows="10">
+      <option value="New Board"> New Board </option>
+    </select>
+    <p></p>
+
+    <button onclick="upload()" id="button">SUBMIT</button>
+    <p></p><br><br>
+
+  </body>
+</html>
