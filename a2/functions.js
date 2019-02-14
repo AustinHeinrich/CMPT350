@@ -35,10 +35,30 @@ function addBoard(aBoard) {
 
 function addPost() {
     let newPost = document.getElementById('newpost').value;
-    postsBoard1.push(newPost + ' \n');
+    var selectedBoard = document.getElementById('boardSelect');
 
-    document.getElementById('posts').value = "";
-    document.getElementById('posts').value = postsBoard1;
+    if (selectedBoard.value == 'Board 1') {
+
+        postsBoard1.push(newPost + ' \n');
+
+        document.getElementById('posts').value = "";
+        document.getElementById('posts').value = postsBoard1.join("");
+    }
+    else if (selectedBoard.value == 'Board 2') {
+
+        postsBoard2.push(newPost + ' \n');
+
+        document.getElementById('posts').value = "";
+        document.getElementById('posts').value = postsBoard2.join("");
+    }
+    else if (selectedBoard.value == 'Board 3') {
+
+        postsBoard3.push(newPost + ' \n');
+
+        document.getElementById('posts').value = "";
+        document.getElementById('posts').value = postsBoard3.join("");
+    }
+    else document.getElementById('posts').value = "error";
 
     document.getElementById('newpost').value = "";
 }
