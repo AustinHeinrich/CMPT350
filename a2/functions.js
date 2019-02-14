@@ -33,4 +33,17 @@ function addBoard(aBoard) {
     }
 }
 
+function addPost() {
+    let newPost = document.getElementById('newpost').value;
+    postsBoard1.push(newPost + ' \n');
+
+    document.getElementById('posts').value = "";
+    document.getElementById('posts').value = postsBoard1;
+
+    document.getElementById('newpost').value = "";
+}
+
 var boardData = new Array();
+var postsBoard1 = new Array();
+var postsBoard2 = new Array();
+var postsBoard3 = new Array();

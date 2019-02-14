@@ -1,20 +1,15 @@
 {
-  "name": "CMPT350",
+  "name": "a2",
   "version": "1.0.0",
-  "description": "Repository for Web Development",
-  "main": "index.js",
+  "description": "",
+  "main": "a2.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AustinHeinrich/CMPT350.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AustinHeinrich/CMPT350/issues"
-  },
-  "homepage": "https://github.com/AustinHeinrich/CMPT350#readme"
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
