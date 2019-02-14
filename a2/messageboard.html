@@ -9,30 +9,17 @@
     <title> Message Board </title>
   </head>
   <body>
-    <script type="text/javascript">
-
-        function upload() {
-          var aBoard;
-          aBoard = document.getElementById("newboard").value;
-
-          document.getElementById("newboard").value = "";
-        }
-
-
-    </script>
-
     <h1 id="topper"> <b>Message Board</b> </h1>
 
-    <textarea id="newboard" rows="10" cols="45"></textarea>
+    <input type='text' id="newboard" rows="1" cols="45"></input>
     <p></p>
 
-    <select id="selectboard" rows="10">
-      <option value="New Board"> New Board </option>
-    </select>
+    <select id="boardlist" rows="10" cols="45"> Available boards </select>
     <p></p>
-
-    <button onclick="upload()" id="button">SUBMIT</button>
+  
+    <button onclick="mkBoard()" id="createBoard"> Create Board </button>
     <p></p><br><br>
-
+  
+    <script type="text/javascript" src="functions.js"></script>
   </body>
 </html>
