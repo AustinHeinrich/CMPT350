@@ -34,26 +34,26 @@ function addBoard(aBoard) {
 }
 
 function addPost() {
-    let newPost = document.getElementById('newpost').value;
+    var newPost = document.getElementById('newpost').value;
     var selectedBoard = document.getElementById('boardSelect');
 
     if (selectedBoard.value == 'Board 1') {
 
-        postsBoard1.push(newPost + ' \n');
+        if (newPost != "") postsBoard1.push(newPost + ' \n'); 
 
         document.getElementById('posts').value = "";
         document.getElementById('posts').value = postsBoard1.join("");
     }
     else if (selectedBoard.value == 'Board 2') {
 
-        postsBoard2.push(newPost + ' \n');
+        if (newPost != "") postsBoard2.push(newPost + ' \n');
 
         document.getElementById('posts').value = "";
         document.getElementById('posts').value = postsBoard2.join("");
     }
     else if (selectedBoard.value == 'Board 3') {
 
-        postsBoard3.push(newPost + ' \n');
+        if (newPost != "") postsBoard3.push(newPost + ' \n');
 
         document.getElementById('posts').value = "";
         document.getElementById('posts').value = postsBoard3.join("");
