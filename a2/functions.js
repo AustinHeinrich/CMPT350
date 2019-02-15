@@ -18,19 +18,43 @@ function mkBoard() {
 
 function addBoard(aBoard) {
 
-    var boardList = document.getElementById("boardlist");
-    boardList.options.length = 0;
+    let xReq = new XMLHttpRequest();
+    xReq.open('POST', '/messageboards');
+    xReq.setRequestHeader('Content-Type', 'application/json');
 
-    boardData.push(aBoard);
-    boardData.sort();
-
-    for (var i = 0; i < boardData.length; i++) {
-        var opt = boardData[i];
-        var el = document.createElement("option");
-        el.textContent = opt;
-        el.value = opt;
-        boardList.appendChild(el);
+    xReq.onreadystatechange = function() {
+        if (this.readyState != 4) return;
+        getBoards();
     }
+
+    xReq.send(JSON.stringify({
+        newBoard : aBoard
+    }))
+}
+
+function getBoards() {
+    let xReq = new XMLHttpRequest();
+    var boardList = document.getElementById("boardlist");
+
+    xReq.open('GET', '/messageboards');
+
+    xReq.onreadystatechange = function() {
+        if (this.readyState != 4) return;
+        
+        let res = JSON.parse(this.responseText);
+
+        boardList.options.length = 0;
+
+        for (var i = 0; i < res.length; i++) {
+            var opt = res[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            boardList.appendChild(el);
+        }
+    }
+
+    xReq.send();
 }
 
 function addPost() {
