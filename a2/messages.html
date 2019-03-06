@@ -21,6 +21,10 @@
         <input type='text' id="newpost"></input>
         <button id='submitButton' onclick="addPost()"> Submit </button>
 
-        <script type="text/javascript" src="functions.js"></script>
+        <script type="text/javascript" src="functions.js">
+            window.onload = function() {
+                getMessages();
+            }
+        </script>
     </body>
 </html>
