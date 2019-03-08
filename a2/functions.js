@@ -15,7 +15,7 @@ function mkBoard() {
 
     document.getElementById("newboard").value = "";
 
-    // useCheck True if aBoard has been used previously
+    // useCheck - True if aBoard has been used previously
     // check if board name used, break to ensure no duplicates
     var useCheck = false; 
     for (var i = 0; i < boardList.length; i++) {
@@ -71,26 +71,7 @@ function getBoards() {
     }
 
     xReq.send();
-} * for messageboard.html
-*/
-
-function mkBoard() {
-   var aBoard;
-   aBoard = document.getElementById("newboard").value;
-   document.getElementById("newboard").value = "";  // clear text
-
-   var boardList = document.getElementById("boardlist");
-   var useCheck = false; // True if aBoard has been used previously
-   for (var i = 0; i < boardList.length; i++) {
-       if (boardList.options[i].value == aBoard) {
-           alert("That is already a board.");
-           useCheck = true;
-           break;
-       }
-   }
-
-   if (useCheck == false) addBoard(aBoard);
-}
+} 
 
 // for messages.html
 
