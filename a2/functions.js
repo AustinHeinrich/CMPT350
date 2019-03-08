@@ -1,10 +1,23 @@
-function mkBoard() {
-    var aBoard;
-    aBoard = document.getElementById("newboard").value;
-    document.getElementById("newboard").value = "";  // clear text
+/*
+ * Austin Heinrich
+ * awh055
+ * 11177796
+ */
 
-    var boardList = document.getElementById("boardlist");
-    var useCheck = false; // True if aBoard has been used previously
+
+/*
+ * mkBoard()
+ * initializes required elements for "making" a new messageboard
+ */ 
+function mkBoard() {
+    var aBoard = document.getElementById("newboard").value; // user input
+    var boardList = document.getElementById("boardlist");   // current list of boards
+
+    document.getElementById("newboard").value = "";
+
+    // useCheck True if aBoard has been used previously
+    // check if board name used, break to ensure no duplicates
+    var useCheck = false; 
     for (var i = 0; i < boardList.length; i++) {
         if (boardList.options[i].value == aBoard) {
             alert("That is already a board.");
@@ -16,8 +29,11 @@ function mkBoard() {
     if (useCheck == false) addBoard(aBoard);
 }
 
+/*
+ * addBoard(aBoard)
+ * aBoard - title of a new board
+ */
 function addBoard(aBoard) {
-
     let xReq = new XMLHttpRequest();
     xReq.open('POST', '/messageboards');
     xReq.setRequestHeader('Content-Type', 'application/json');
@@ -55,10 +71,33 @@ function getBoards() {
     }
 
     xReq.send();
+} * for messageboard.html
+*/
+
+function mkBoard() {
+   var aBoard;
+   aBoard = document.getElementById("newboard").value;
+   document.getElementById("newboard").value = "";  // clear text
+
+   var boardList = document.getElementById("boardlist");
+   var useCheck = false; // True if aBoard has been used previously
+   for (var i = 0; i < boardList.length; i++) {
+       if (boardList.options[i].value == aBoard) {
+           alert("That is already a board.");
+           useCheck = true;
+           break;
+       }
+   }
+
+   if (useCheck == false) addBoard(aBoard);
 }
 
+// for messages.html
+
 /*
- * for messages.html
+ * mkPost()
+ * pulls user input from the bottom text area, the selected board,
+ *  and clears the bottom text area
  */
 function mkPost() {
     var aPost;          // new post by user
@@ -67,6 +106,9 @@ function mkPost() {
     selectedBoard = document.getElementById('boardSelect');
     aPost = document.getElementById('newpost').value;
     document.getElementById('newpost').value = "";
+
+    console.log(selectedBoard);
+    console.log(aPost);
 
     addPost(aPost, selectedBoard);
 }
@@ -87,22 +129,14 @@ function addPost(aPost, selectedBoard) {
 }
 
 function getPosts() {
-    let xRew = new XMLHttpRequest();
-    var posts = document.getElementById("posts");  // the large textarea
-    
-    xReq.open('GET', '/messages');
+    let xReq = new XMLHttpRequest();
 
-    xReq.onreadystatechange = function() {
-        if (this.readyState != 4) return;
 
-        let res = JSON.parse(this.responseText);
 
-        posts.value = "";
 
-        // use the switch statement
-        // copy 'getboards' and place/append as appropriate in postsBoard
 
-    }
+    document.getElementById('newpost').value = "";
+    xReq.send();
 }
 
 
@@ -111,7 +145,7 @@ function getPosts() {
 
 
 
-
+/*
 function addPost() {
  
     let xReq = new XMLHttpRequest();
@@ -168,7 +202,7 @@ function getMessages() {
 
     document.getElementById('newpost').value = "";
    
-}
+} */
 
 var boardData = new Array();
 var postsBoard = new Array();
