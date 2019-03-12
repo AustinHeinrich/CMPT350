@@ -1,0 +1,39 @@
+<!------------
+    Austin Heinrich 
+    11177796
+    awh055
+------------->
+
+<!DOCTYPE <!DOCTYPE html>
+<html lang="eng">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Message Board </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body onload="getBoards()">
+    <h1> <b>Message Board</b> </h1>
+    <input id="newBoardEntry" type="text" rows="1" cols"45"></input>
+    <p></p>
+
+    <select id="boardList""></select>
+    <p></p>
+
+    <button id="createBoardSwitch" onclick="addNewBoard()"> Create Board </button>
+    <p></p><br><br>
+
+    <h1> <b>Messages</b> </h1>
+    <h3> Please select your board </h3>
+    <select id="boardSelect" onchange=""></select>
+    <p></p>
+
+    <textarea id="posts" cols="50" rows="10" readonly="readonly"></textarea>
+    <p></p>
+
+    <input type="text" id="newPostEntry"></input>
+    <button id="submitPostButton"> Submit </button>
+
+    <script type="text/javascript" src="functions.js"></script>
+</body>
+</html>
