@@ -27,15 +27,16 @@ app.get('/messages', (req, res) => {
 })
 
 app.post('/messageboards', (req, res) => {
-    let messageBoard = req.body;
-    let newBoard = messageBoard.newBoard;
+    let messageBoard = req.body;      // e.g. "{ boards: 'hello' }"
+    let board = messageBoard.board; // e.g. "hello"
 
-    messageboards[newBoard] = [];
+    messageboards[board] = [];
     res.status(200).send('ok');
 })
 
 app.post('/messages', (req, res) => {
-    
+    let messages = req.body;    
+    let allMessages = messages.allMessages;
 
 
     res.status(200).send('ok');

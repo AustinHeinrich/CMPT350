@@ -41,12 +41,12 @@ function handleBoards(aBoard) {
     xhttp.setRequestHeader('Content-Type', 'application/json'); 
 
     xhttp.onreadystatechange = function() {
-        if (this.readyState != 4) return;
+        if (this.readyState != 4 && this.status == 200) return;
         getBoards();
     }
 
     xhttp.send(JSON.stringify({
-        newBoard : aBoard
+        board : aBoard
     }))
 } 
 
@@ -61,7 +61,7 @@ function getBoards() {
     xhttp.open('GET', '/messageboards');
 
     xhttp.onreadystatechange = function() {
-        if (this.readyState != 4) return;
+        if (this.readyState != 4 && this.status == 200) return;
 
         // get items from JSON, place them into the board select list
         //  and also place them in the upper text area (list of message boards)
@@ -77,12 +77,7 @@ function getBoards() {
             boardSelect.appendChild(opt);
             
             boardList.value += (boardSelect.options[i].value + '\n');
-            
         }
-
-        
-
-        
     }
 
     xhttp.send();
@@ -94,7 +89,7 @@ function getBoards() {
  * handles adding a new message, content of the messages
  */
 function handleMessages() {
-    var messageBoards = document.getElementById("boardSelect");
+    var allMessageBoards = document.getElementById("boardSelect");
     var selectedMsgBoard = messageBoards.options[selectedMsgBoard.selectedIndex].value;  // gets the currently selected option
     var newMessage = document.getElementById("newPostEntry").value;     
 
@@ -102,7 +97,10 @@ function handleMessages() {
     xhttp.open('POST', '/messages');    
     xhttp.setRequestHeader('Content-Type', 'application/json'); 
 
-
+    xhttp.onreadystatechange = function() {
+        if (this.readyState != 4) return;
+        getMessages(selectedMsgBoard);
+    }
 
     // hash table brother!
     // need to take selected board, compare it with key in the JSON file, and then append to those tables
