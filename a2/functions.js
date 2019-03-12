@@ -4,6 +4,8 @@
  * 11177796
  */
 
+var allMessages = new Map([]);
+
 /*
  * addNewBoard()
  * initializes required elements for making a new messageboard
@@ -61,20 +63,26 @@ function getBoards() {
     xhttp.onreadystatechange = function() {
         if (this.readyState != 4) return;
 
-        // get items from JSON, place them into the board list
+        // get items from JSON, place them into the board select list
+        //  and also place them in the upper text area (list of message boards)
         let res = JSON.parse(this.responseText);
         res.sort();
-        boardList.options.length = 0;
+        boardSelect.options.length = 0;
+        boardList.value = ""
         for (var i = 0; i < res.length; i++) {
             var opt = document.createElement('option');
             var el = res[i];
             opt.value = el;
             opt.innerHTML = el;
-            boardList.appendChild(opt);
+            boardSelect.appendChild(opt);
+            
+            boardList.value += (boardSelect.options[i].value + '\n');
+            
         }
 
-        boardSelect.options.length = 0;
-        boardSelect.innerHTML = boardList.innerHTML;
+        
+
+        
     }
 
     xhttp.send();
