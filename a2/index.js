@@ -22,10 +22,21 @@ app.get('/messageboards', (req, res) => {
     res.status(200).send(Object.keys(messageboards));
 })
 
+app.get('/messages', (req, res) => {
+    res.status(200).send(Object.keys(messages));
+})
+
 app.post('/messageboards', (req, res) => {
     let messageBoard = req.body;
     let newBoard = messageBoard.newBoard;
 
     messageboards[newBoard] = [];
+    res.status(200).send('ok');
+})
+
+app.post('/messages', (req, res) => {
+    
+
+
     res.status(200).send('ok');
 })
