@@ -9,7 +9,7 @@ const app = express();
 const port = 3000;
 
 var messageboards = {}
-var messages = {}
+var messages = new Map();
 
 app.use(express.static(__dirname));
 app.use(express.json());
@@ -27,7 +27,7 @@ app.get('/messages', (req, res) => {
 })
 
 app.post('/messageboards', (req, res) => {
-    let messageBoard = req.body;      // e.g. "{ boards: 'hello' }"
+    let messageBoard = req.body;    // e.g. "{ boards: 'hello' }"
     let board = messageBoard.board; // e.g. "hello"
 
     messageboards[board] = [];
@@ -35,9 +35,9 @@ app.post('/messageboards', (req, res) => {
 })
 
 app.post('/messages', (req, res) => {
-    let messages = req.body;    
-    let allMessages = messages.allMessages;
+    let messageObj = req.body;    
+    let messages = messageObj.messages;
 
-
+    messageObj[messages] = [];
     res.status(200).send('ok');
 })

@@ -4,7 +4,7 @@
  * 11177796
  */
 
-var allMessages = new Map([]);
+var broc = new Map();
 
 /*
  * addNewBoard()
@@ -15,6 +15,8 @@ function addNewBoard() {
     var boardList = document.getElementById("boardList");
     
     document.getElementById("newBoardEntry").value = ""; // clear text
+
+    if (newBoard == "") return;
 
     // useCheck - true if newBoard has been used previously
     // check if a board name has been used, break to ensure no duplicates
@@ -28,6 +30,7 @@ function addNewBoard() {
     }
 
     if (useCheck == false) handleBoards(newBoard);
+    else return;
 }
 
 /*
@@ -41,13 +44,13 @@ function handleBoards(aBoard) {
     xhttp.setRequestHeader('Content-Type', 'application/json'); 
 
     xhttp.onreadystatechange = function() {
-        if (this.readyState != 4 && this.status == 200) return;
+        if (this.readyState != 4) return;
         getBoards();
     }
 
-    xhttp.send(JSON.stringify({
-        board : aBoard
-    }))
+    boards = {board : aBoard};
+    xhttp.send(JSON.stringify(boards));
+
 } 
 
 /*
@@ -61,7 +64,7 @@ function getBoards() {
     xhttp.open('GET', '/messageboards');
 
     xhttp.onreadystatechange = function() {
-        if (this.readyState != 4 && this.status == 200) return;
+        if (this.readyState != 4) return;
 
         // get items from JSON, place them into the board select list
         //  and also place them in the upper text area (list of message boards)
@@ -89,8 +92,8 @@ function getBoards() {
  * handles adding a new message, content of the messages
  */
 function handleMessages() {
-    var allMessageBoards = document.getElementById("boardSelect");
-    var selectedMsgBoard = messageBoards.options[selectedMsgBoard.selectedIndex].value;  // gets the currently selected option
+    var messageBoards = document.getElementById("boardSelect");
+    var selectedMessageBoard = messageBoards.value;
     var newMessage = document.getElementById("newPostEntry").value;     
 
     var xhttp = new XMLHttpRequest();
@@ -99,8 +102,14 @@ function handleMessages() {
 
     xhttp.onreadystatechange = function() {
         if (this.readyState != 4) return;
-        getMessages(selectedMsgBoard);
+        getMessages();
     }
+
+
+    // don't worry about a map appending, just replace everything
+    broc.set("hello", ["one","two","three"]);
+    console.log(broc);
+    xhttp.send(JSON.stringify());
 
     // hash table brother!
     // need to take selected board, compare it with key in the JSON file, and then append to those tables
@@ -110,3 +119,21 @@ function handleMessages() {
 
 }
 
+function getMessages() {
+    var xhttp = new XMLHttpRequest();
+    var posts = document.getElementById("posts");
+    xhttp.open('GET', '/messages');
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState != 4) return;
+
+        let res = JSON.parse(this.responseText);
+        posts.value = "";
+        for (var i=0; i < res.length; i++) {
+            posts.value.appendChild(res[i]);
+        }
+
+    }
+
+    xhttp.send();
+}
