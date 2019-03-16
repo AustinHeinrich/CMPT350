@@ -12,7 +12,7 @@
     <title> Message Board </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body onload="getBoards()">
+<body onload="getBoards()" onload="handleMessages()">
     <h1> <b>Message Board</b> </h1>
     <input id="newBoardEntry" type="text" rows="1" cols"45"></input>
     <p></p>
@@ -25,7 +25,7 @@
 
     <h1> <b>Messages</b> </h1>
     <h3> Please select your board </h3>
-    <select id="boardSelect" onchange=""></select>
+    <select id="boardSelect" onchange="getMessages()"></select>
     <p></p>
 
     <textarea id="posts" cols="50" rows="10" readonly="readonly"></textarea>

@@ -8,8 +8,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-var messageboards = {}
-var messages = new Map();
+var messageboards = {};
 
 app.use(express.static(__dirname));
 app.use(express.json());
@@ -20,24 +19,54 @@ app.listen(port, () => console.log(`App listening on port ${port}.`));
 
 app.get('/messageboards', (req, res) => {
     res.status(200).send(Object.keys(messageboards));
-})
+});
 
-app.get('/messages', (req, res) => {
-    res.status(200).send(Object.keys(messages));
-})
+app.get('/messages/:msgBoard', (req, res) => {
+    // checks that the board exists
+    if (!(req.params.msgBoard in messageboards)) {
+        res.status(400).send({
+            message: "Board does not exist."
+        });
+        
+        return;
+    }
+
+    res.status(200).send(messageboards[req.params.msgBoard]);
+});
 
 app.post('/messageboards', (req, res) => {
-    let messageBoard = req.body;    // e.g. "{ boards: 'hello' }"
-    let board = messageBoard.board; // e.g. "hello"
+    var messageBoard = req.body;    // e.g. "{ boards: 'hello' }"
+    var board = messageBoard.board; // e.g. "hello"
 
     messageboards[board] = [];
-    res.status(200).send('ok');
-})
+    res.status(200).send({message : "ok"});
+});
 
-app.post('/messages', (req, res) => {
-    let messageObj = req.body;    
-    let messages = messageObj.messages;
+app.post('/messages/:msgBoard', (req, res) => {
+    if (!(req.params.msgBoard in messageboards)) {
+        res.status(400).send({
+            message : "Board does not exist."
+        });
+        
+        return;
+    }
 
-    messageObj[messages] = [];
-    res.status(200).send('ok');
-})
+    if (!("message" in req.body)) {
+        res.status(400).send({
+            message : "There is no message."
+        });
+
+        return;
+    }
+
+    if (req.body.message.length == 0) {
+        res.status(400).send({
+            message : "Message must have content."
+        });
+
+        return;
+    }
+
+    messageboards[req.params.msgBoard].push(req.body.message);
+    res.status(200).send({message : "ok"});
+});

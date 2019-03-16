@@ -4,7 +4,6 @@
  * 11177796
  */
 
-var broc = new Map();
 
 /*
  * addNewBoard()
@@ -46,7 +45,7 @@ function handleBoards(aBoard) {
     xhttp.onreadystatechange = function() {
         if (this.readyState != 4) return;
         getBoards();
-    }
+    };
 
     boards = {board : aBoard};
     xhttp.send(JSON.stringify(boards));
@@ -68,10 +67,10 @@ function getBoards() {
 
         // get items from JSON, place them into the board select list
         //  and also place them in the upper text area (list of message boards)
-        let res = JSON.parse(this.responseText);
+        var res = JSON.parse(this.responseText);
         res.sort();
         boardSelect.options.length = 0;
-        boardList.value = ""
+        boardList.value = "";
         for (var i = 0; i < res.length; i++) {
             var opt = document.createElement('option');
             var el = res[i];
@@ -81,7 +80,7 @@ function getBoards() {
             
             boardList.value += (boardSelect.options[i].value + '\n');
         }
-    }
+    };
 
     xhttp.send();
 }
@@ -93,47 +92,48 @@ function getBoards() {
  */
 function handleMessages() {
     var messageBoards = document.getElementById("boardSelect");
-    var selectedMessageBoard = messageBoards.value;
+    var selectedBoard = messageBoards.value;
     var newMessage = document.getElementById("newPostEntry").value;     
 
+    if (!selectedBoard) return;
+
     var xhttp = new XMLHttpRequest();
-    xhttp.open('POST', '/messages');    
+    xhttp.open('POST', `/messages/${selectedBoard}`);    
     xhttp.setRequestHeader('Content-Type', 'application/json'); 
 
     xhttp.onreadystatechange = function() {
         if (this.readyState != 4) return;
         getMessages();
-    }
+    };
 
 
-    // don't worry about a map appending, just replace everything
-    broc.set("hello", ["one","two","three"]);
-    console.log(broc);
-    xhttp.send(JSON.stringify());
-
-    // hash table brother!
-    // need to take selected board, compare it with key in the JSON file, and then append to those tables
-    // no need for if statements/switches, literally why were you even thinking of those that's practically impossible
-    // without stupid stuff
-    // but now, you take the current value and use it as a key! Grab the messages and we're golden
-
+    
+    xhttp.send(JSON.stringify({message : newMessage}));    
 }
 
+/*
+ *
+ *
+ */
 function getMessages() {
     var xhttp = new XMLHttpRequest();
     var posts = document.getElementById("posts");
-    xhttp.open('GET', '/messages');
+    var selectedBoard = document.getElementById("boardSelect").value;
+    if (!selectedBoard) return;
+
+    xhttp.open('GET', `/messages/${selectedBoard}`);
 
     xhttp.onreadystatechange = function() {
         if (this.readyState != 4) return;
 
-        let res = JSON.parse(this.responseText);
+        var res = JSON.parse(this.responseText);
         posts.value = "";
-        for (var i=0; i < res.length; i++) {
-            posts.value.appendChild(res[i]);
-        }
 
-    }
+        res.forEach(e => { 
+            posts.value += e + "\n";
+        });
+
+    };
 
     xhttp.send();
 }
