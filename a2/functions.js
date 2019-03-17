@@ -12,7 +12,7 @@
 function addNewBoard() {
     var newBoard = document.getElementById("newBoardEntry").value;
     var boardList = document.getElementById("boardList");
-    
+
     document.getElementById("newBoardEntry").value = ""; // clear text
 
     if (newBoard == "") return;
@@ -38,19 +38,21 @@ function addNewBoard() {
  * handles content of messageboard titles, adding a new messageboard
  */
 function handleBoards(aBoard) {
-    var xhttp = new XMLHttpRequest();        
-    xhttp.open('POST', '/messageboards');    
-    xhttp.setRequestHeader('Content-Type', 'application/json'); 
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '/messageboards');
+    xhttp.setRequestHeader('Content-Type', 'application/json');
 
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState != 4) return;
         getBoards();
     };
 
-    boards = {board : aBoard};
+    boards = {
+        board: aBoard
+    };
     xhttp.send(JSON.stringify(boards));
 
-} 
+}
 
 /*
  * getBoards()
@@ -62,10 +64,10 @@ function getBoards() {
     var boardSelect = document.getElementById("boardSelect");
     xhttp.open('GET', '/messageboards');
 
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState != 4) return;
 
-        // get items from JSON, place them into the board select list
+        // get items from JSON, sort & place them into the board select list
         //  and also place them in the upper text area (list of message boards)
         var res = JSON.parse(this.responseText);
         res.sort();
@@ -77,7 +79,7 @@ function getBoards() {
             opt.value = el;
             opt.innerHTML = el;
             boardSelect.appendChild(opt);
-            
+
             boardList.value += (boardSelect.options[i].value + '\n');
         }
     };
@@ -93,22 +95,24 @@ function getBoards() {
 function handleMessages() {
     var messageBoards = document.getElementById("boardSelect");
     var selectedBoard = messageBoards.value;
-    var newMessage = document.getElementById("newPostEntry").value;     
+    var newMessage = document.getElementById("newPostEntry").value;
 
     if (!selectedBoard) return;
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open('POST', `/messages/${selectedBoard}`);    
-    xhttp.setRequestHeader('Content-Type', 'application/json'); 
+    xhttp.open('POST', `/messages/${selectedBoard}`);
+    xhttp.setRequestHeader('Content-Type', 'application/json');
 
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState != 4) return;
         getMessages();
     };
 
 
-    
-    xhttp.send(JSON.stringify({message : newMessage}));    
+
+    xhttp.send(JSON.stringify({
+        message: newMessage
+    }));
 }
 
 /*
@@ -123,16 +127,15 @@ function getMessages() {
 
     xhttp.open('GET', `/messages/${selectedBoard}`);
 
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState != 4) return;
 
         var res = JSON.parse(this.responseText);
         posts.value = "";
 
-        res.forEach(e => { 
+        res.forEach(e => {
             posts.value += e + "\n";
         });
-
     };
 
     xhttp.send();
