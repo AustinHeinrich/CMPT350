@@ -1,0 +1,39 @@
+<!------------
+    Austin Heinrich 
+    11177796
+    awh055
+------------->
+
+<!DOCTYPE <!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Chat Board </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <h1> <b>Message Boards</b> </h1>
+    <input id="newBoardEntry" type="text" rows="1" cols"45"></input>
+    <button id="createBoardSwitch" onclick="createNewBoard()"> Create Board </button>
+    <p></p>
+
+    <h3> Select a board & make an entry </h3>
+    <select id="boardSelect"></select>
+    <button id="deleteBoardSwitch" onclick="deleteBoard()"> Delete Board </button>
+    <p></p><br>
+
+    <textarea id="posts" cols="50" rows="10" readonly="readonly"></textarea>
+    <p></p>
+
+    <input type="text" id="newPostEntry"></input>
+    <button id="submitPostButton" onclick="postMessage()"> Post </button>
+
+    <script type="text/javascript" src="front.js"></script>
+</body>
+
+</html>
