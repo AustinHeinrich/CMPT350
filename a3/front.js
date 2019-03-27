@@ -1,4 +1,5 @@
 // set up authorization -- very secure
+// YWRtaW46cGFzc3dvcmQ=
 const axiosSettings = {
   auth: {
     username: "admin",
