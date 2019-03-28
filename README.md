@@ -17,7 +17,7 @@ The front end utilized axios, a Promise based HTTP client for node, which
 was excellent to use. GET, POST, and DELETE was all the functionality I
 had to use for this project, all of which was very simple.
 
-The project uses nodejs, sqlite3, axios, and expressjs.
+The project uses nodejs, sqlite3, axios, and expressjs (+express-basic-auth).
 
 ### Assignment 2 - A Simple Messageboard using AJAX and DOM Tree Manipulation
 
