@@ -14,7 +14,7 @@ The project uses nodejs, sqlite3, axios, and expressjs (+express-basic-auth).
 
 ### Assignment 2 - A Simple Messageboard using AJAX and DOM Tree Manipulation
 
-This assignment covers building a (very) simple messageboard with some - older - techniques. The project allows the user to create a new messageboard by giving it a name, and then a user can post to the created messageboards. Messages will remain associated with whatever messageboard they were originally posted in.
+This assignment covers building a (very) simple messageboard. The project allows the user to create a new messageboard by giving it a name, and then a user can post to the created messageboards. Messages will remain associated with whatever messageboard they were originally posted in.
 
 I decided to switch to JavaScript here instead of sticking with Java like many others in the class. I wasn't appreciating Java servlets, thought they were more difficult to use, and didn't have the versatility JS could offer me. This assignment was particualarly frustrating, which explains the lengthy series of commits, because of certain restrictions placed on it, and because of the amount of learning I had to do from scratch (JSON, http, basically everything about JavaScript, nodejs, and expressjs), but it was a great learning experience and I'm appreciative of that.
 
