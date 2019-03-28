@@ -14,13 +14,10 @@ const axiosAuthentication = {
  */
 async function getChatRooms() {
   var boardList = document.getElementById("boardSelect");
-  var selectedBoard = document.getElementById("boardSelect").value;
 
   try {
     const res = await axios.get("/messageboards", axiosAuthentication);
     const chatrooms = res.data; // e.g.) {msgboardname: "foo"}
-
-    console.log(chatrooms);
 
     boardList.options.length = 0;
     for (var i = 0; i < chatrooms.length; i++) {
@@ -30,13 +27,17 @@ async function getChatRooms() {
       opt.innerHTML = el;
       boardList.appendChild(opt);
     }
+
+    getMessages();
   } catch (error) {
     console.error(error);
   }
-
-  if (selectedBoard !== "") getMessages();
 }
 
+/*
+ * getMessages()
+ * get all messages for the current messageboard
+ */
 async function getMessages() {
   var selectedBoard = document.getElementById("boardSelect").value;
   var posts = document.getElementById("posts");
@@ -48,7 +49,23 @@ async function getMessages() {
     );
     const messageData = res.data;
 
-    console.log(messageData);
+    //console.log(messageData);
+
+    posts.value = ""; // clear text
+    for (var i = messageData.length - 1; i >= 0; i--) {
+      posts.value +=
+        "[" +
+        messageData[i].username +
+        ": " +
+        messageData[i].id +
+        "] " +
+        messageData[i].message +
+        " @ " +
+        messageData[i].timestamp +
+        "\n";
+    }
+
+    posts.scrollTop = posts.scrollHeight;
   } catch (error) {
     console.error(error);
   }
@@ -115,10 +132,16 @@ async function deleteBoard() {
   }
 }
 
+/*
+ * postMessage()
+ * add a new message to the selected messageboard
+ */
 async function postMessage() {
   var newPost = document.getElementById("newPostEntry").value;
   var selectedBoard = document.getElementById("boardSelect").value;
   document.getElementById("newPostEntry").value = ""; // clear text
+
+  if (newPost == "") return;
 
   try {
     const req = await axios.post(
@@ -129,7 +152,7 @@ async function postMessage() {
       axiosAuthentication
     );
 
-    getChatRooms();
+    getMessages();
   } catch (error) {
     console.error(error);
   }
