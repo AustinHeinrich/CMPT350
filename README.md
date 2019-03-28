@@ -1,6 +1,7 @@
 # CMPT350
 
 Repository for Web Development
+
 Assignments are listed in order of what I think is practical.
 
 ### Assignment 3 - A Simple Messageboard Connects to a SQL Database
