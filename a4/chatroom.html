@@ -1,0 +1,49 @@
+<!------------
+    Austin Heinrich 
+    11177796
+    awh055
+------------->
+
+<!DOCTYPE <!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Chat Board </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <div data-role="page" id="SelectBoardPage"> 
+        <div data-role="header">
+            <h1> <b>Message Board System</b> </h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <input id="newBoardEntry" type="text" placeholder="Enter a new board name"></input>
+            <button id="createBoardSwitch" onclick="createNewBoard()"> Create Board </button>
+            <p></p>
+            
+            <h3> Select a board & make an entry </h3>
+            <select id="boardSelect" data-mini="true"></select>
+            <button id="deleteBoardSwitch" onclick="deleteBoard()"> Delete Board </button>
+            <p></p><br>
+            
+            <textarea id="posts" readonly="readonly" data-autogrow="false" rows="8"></textarea>
+            <p></p>
+            
+            <form>
+                <input type="text" id="newPostEntry" placeholder="Enter a new post"></input>
+            </form>
+            <button id="submitPostButton" onclick="postMessage()"> Post </button>
+        </div>
+        <div data-role="footer">
+            <h2>Austin Heinrich | awh055 | 11177796</h2>
+        </div>
+    </div>
+    <script type="text/javascript" src="front.js"></script>
+</body>
+</html>

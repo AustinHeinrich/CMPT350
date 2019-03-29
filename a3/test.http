@@ -1,0 +1,34 @@
+GET http://localhost:3000/messageboards HTTP/1.1
+Authorization: Basic admin password
+
+###
+
+POST http://localhost:3000/messageboards HTTP/1.1
+Authorization: Basic admin password
+Content-Type: application/json
+
+{
+    "msgboardname": "foo"
+}
+
+###
+
+DELETE http://localhost:3000/messageboards/foo HTTP/1.1
+Authorization: Basic admin password
+
+
+###
+
+GET http://localhost:3000/messageboards/foo HTTP/1.1
+Authorization: Basic admin password
+
+
+###
+
+POST http://localhost:3000/messageboards/foo HTTP/1.1
+Authorization: Basic admin password
+Content-Type: application/json
+
+{
+    "message" : "test_message"
+}
