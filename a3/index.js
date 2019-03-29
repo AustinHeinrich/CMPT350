@@ -64,7 +64,6 @@ async function main() {
   }
 
   // authorization
-  // gonna 401, need a way to become authorized
   app.use(
     "/messageboards",
     auth({

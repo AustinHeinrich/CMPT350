@@ -7,6 +7,8 @@ const axiosAuthentication = {
   }
 };
 
+var latestMsg = "";
+
 /*
  * getChatRooms()
  * retrieve the whole list of chat rooms, display it in the select box
@@ -152,6 +154,9 @@ async function postMessage() {
       axiosAuthentication
     );
 
+    // grab latest message -- quick and stupid way
+    latestMsg = "Latest Message: '" + newPost  + "' in (" + selectedBoard + ")";
+    document.getElementById("latestmsg").innerHTML = latestMsg;
     getMessages();
   } catch (error) {
     console.error(error);
