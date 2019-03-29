@@ -13,21 +13,20 @@ const axiosAuthentication = {
  * retrieve all messages for the selected chatroom/messageboard
  */
 async function getChatRooms() {
-  var boardList = document.getElementById("boardSelect");
-
   try {
     const res = await axios.get("/messageboards", axiosAuthentication);
     const chatrooms = res.data; // e.g.) {msgboardname: "foo"}
 
-    boardList.options.length = 0;
+    $("#boardSelect").empty();
+
+    // add all messageboards
     for (var i = 0; i < chatrooms.length; i++) {
-      var opt = document.createElement("option");
-      var el = chatrooms[i].msgboardname;
-      opt.value = el;
-      opt.innerHTML = el;
-      boardList.appendChild(opt);
+      $(boardSelect).append(
+        '<option value="">' + chatrooms[i].msgboardname + "</option>"
+      );
     }
 
+    $("#boardSelect").selectmenu("refresh");
     getMessages();
   } catch (error) {
     console.error(error);
@@ -39,21 +38,20 @@ async function getChatRooms() {
  * get all messages for the current messageboard
  */
 async function getMessages() {
-  var selectedBoard = document.getElementById("boardSelect").value;
-  var posts = document.getElementById("posts");
-
   try {
+    var selectedBoard = $("#boardSelect")
+      .find(":selected")
+      .text();
     const res = await axios.get(
       `/messageboards/${selectedBoard}`,
       axiosAuthentication
     );
     const messageData = res.data;
 
-    //console.log(messageData);
-
-    posts.value = ""; // clear text
+    $("#posts").empty(); // clear text
+    var text = "";
     for (var i = messageData.length - 1; i >= 0; i--) {
-      posts.value +=
+      text +=
         "[" +
         messageData[i].username +
         ": " +
@@ -64,8 +62,8 @@ async function getMessages() {
         messageData[i].timestamp +
         "\n";
     }
-
-    posts.scrollTop = posts.scrollHeight;
+    $("#posts").val(text);
+    $("#posts").scrollTop($("#posts")[0].scrollHeight);
   } catch (error) {
     console.error(error);
   }
@@ -77,23 +75,16 @@ async function getMessages() {
  * does not allow repeated boards or empty board names
  */
 async function createNewBoard() {
-  var newBoard = document.getElementById("newBoardEntry").value;
-  var boardList = document.getElementById("boardSelect");
+  var newBoard = $("#newBoardEntry").val();
+  $("#newBoardEntry").val(""); // clear text
 
-  document.getElementById("newBoardEntry").value = ""; // clear text
   if (newBoard == "") return;
 
-  // useCheck - true if newBoard has been used previously
   // check if a board name has been used, break to ensure no duplicates
-  var useCheck = false;
-  for (var i = 0; i < boardList.length; i++) {
-    if (boardList.options[i].value == newBoard) {
-      alert("That is already a board.");
-      useCheck = true;
-      break;
-    }
+  if ($("#boardSelect option:contains(" + newBoard + ")").length) {
+    alert(newBoard + " is already a board.");
+    return;
   }
-  if (useCheck != false) return;
 
   try {
     const req = await axios.post(
@@ -115,10 +106,10 @@ async function createNewBoard() {
  * deletes the board currently selected by the board select
  */
 async function deleteBoard() {
-  var boardList = document.getElementById("boardSelect");
-  var boardToDelete = boardList.value;
-
-  if (!boardToDelete) return;
+  var boardToDelete = $("#boardSelect")
+    .find(":selected")
+    .text();
+  if (boardToDelete == "") return;
 
   try {
     const del = await axios.delete(
@@ -126,6 +117,7 @@ async function deleteBoard() {
       axiosAuthentication
     );
 
+    console.log("Deleted " + boardToDelete);
     getChatRooms();
   } catch (error) {
     console.error(error);
@@ -137,9 +129,11 @@ async function deleteBoard() {
  * add a new message to the selected messageboard
  */
 async function postMessage() {
-  var newPost = document.getElementById("newPostEntry").value;
-  var selectedBoard = document.getElementById("boardSelect").value;
-  document.getElementById("newPostEntry").value = ""; // clear text
+  var newPost = $("#newPostEntry").val();
+  var selectedBoard = $("#boardSelect")
+    .find(":selected")
+    .text();
+  $("#newPostEntry").val(""); // clear text
 
   if (newPost == "") return;
 
@@ -161,5 +155,11 @@ async function postMessage() {
 async function main() {
   getChatRooms();
 }
+
+$("document").ready(function() {
+  $("#boardSelect").on("change", function() {
+    getMessages();
+  });
+});
 
 main();

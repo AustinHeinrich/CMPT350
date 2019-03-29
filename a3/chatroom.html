@@ -2,6 +2,7 @@
     Austin Heinrich 
     11177796
     awh055
+    
 ------------->
 
 <!DOCTYPE <!DOCTYPE html>
@@ -17,13 +18,13 @@
 
 <body>
 
-    <h1> <b>Message Boards</b> </h1>
+    <h1> <b>Message Board</b> </h1>
     <input id="newBoardEntry" type="text" rows="1" cols"45"></input>
     <button id="createBoardSwitch" onclick="createNewBoard()"> Create Board </button>
     <p></p>
 
     <h3> Select a board & make an entry </h3>
-    <select id="boardSelect"></select>
+    <select id="boardSelect" onselect="getMessages()"></select>
     <button id="deleteBoardSwitch" onclick="deleteBoard()"> Delete Board </button>
     <p></p><br>
 
