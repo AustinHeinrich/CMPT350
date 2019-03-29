@@ -4,6 +4,9 @@ Repository for Web Development
 
 Assignments are listed in order of what I think is practical.
 
+### Assignment 4 - A Simple Messageboard Conencts to a SQL Database, but in JQuery Mobile
+An exact copy of Assignment 3, but the front end utilizes JQuery Mobile. 
+
 ### Assignment 3 - A Simple Messageboard Connects to a SQL Database
 
 Similar to Assignment 2 (but significantly better), this is a simple messageboard that allows the user to create messageboards and post to them. A user may delete previously created messageboards, which deletes all associated messages as well. It also makes use of authorization, using the express-basic-auth middleware (so base64 encoding), which is just hard coded in for convenience's sake.
