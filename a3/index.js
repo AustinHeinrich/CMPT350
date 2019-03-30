@@ -47,7 +47,8 @@ async function main() {
         );
 
         CREATE TABLE IF NOT EXISTS msgboards (
-            msgboardname VARCHAR(255) PRIMARY KEY
+            msgboardname VARCHAR(255) PRIMARY KEY,
+            boardmessagecount INTEGER
         );
 
         CREATE TABLE IF NOT EXISTS messages (
@@ -88,7 +89,9 @@ async function main() {
   // getting all chatrooms
   app.get("/messageboards", async (req, res) => {
     try {
-      var boards = await db.get_async("SELECT * FROM msgboards");
+      var boards = await db.get_async(
+        "SELECT * FROM msgboards ORDER BY boardmessagecount DESC"
+      );
 
       res
         .status(200)
@@ -108,8 +111,8 @@ async function main() {
   app.post("/messageboards", async (req, res) => {
     try {
       if (!req.body.msgboardname) throw "Messageboard not found.";
-      var boards = await db.run_async(`INSERT INTO msgboards (msgboardname) VALUES (
-            "${req.body.msgboardname}");`);
+      var boards = await db.run_async(`INSERT INTO msgboards (msgboardname, boardmessagecount) VALUES 
+        ("${req.body.msgboardname}", 0);`);
 
       res
         .status(200)
@@ -131,9 +134,8 @@ async function main() {
       if (!req.params.msgboardname) throw "Messageboard not found.";
       var boards = await db.run_async(`DELETE FROM msgboards WHERE
                     msgboardname = "${req.params.msgboardname}";
-                    
-                    DELETE FROM messages WHERE
-                        msgboardname = "${req.params.msgboardname}";`);
+                    DELETE FROM messages WHERE 
+                      msgboardname = "${req.params.msgboardname}";`);
 
       res
         .status(200)
@@ -194,9 +196,9 @@ async function main() {
 
       var sqlRes = await db.run_async(`
                 INSERT INTO messages (message, msgboardname, username) VALUES (
-                "${req.body.message}",
-                "${req.params.msgboardname}",
-                "${user}");`);
+                "${req.body.message}","${req.params.msgboardname}","${user}");
+                UPDATE msgboards SET boardmessagecount = boardmessagecount + 1 WHERE msgboardname = 
+                "${req.params.msgboardname}";`);
 
       res
         .status(200)

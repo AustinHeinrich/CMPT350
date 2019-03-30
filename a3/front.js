@@ -147,7 +147,7 @@ async function postMessage() {
 
   try {
     const req = await axios.post(
-      `messageboards/${selectedBoard}`,
+      `/messageboards/${selectedBoard}`,
       {
         message: newPost
       },
@@ -155,7 +155,7 @@ async function postMessage() {
     );
 
     // grab latest message -- quick and stupid way
-    latestMsg = "Latest Message: '" + newPost  + "' in (" + selectedBoard + ")";
+    latestMsg = "Latest Message: '" + newPost + "' in (" + selectedBoard + ")";
     document.getElementById("latestmsg").innerHTML = latestMsg;
     getMessages();
   } catch (error) {
