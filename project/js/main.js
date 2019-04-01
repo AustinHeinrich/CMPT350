@@ -27,16 +27,19 @@ function createMarker(place) {
   // get extra details about a place
   // if no extra found, print without them
   service.getDetails(request, function (details, status) {
+    var rating = "No rating.";
     if (details) {
+      if (details.rating != undefined) rating = details.rating + "/5";
       var content = "<b>" + details.name + "</b>" +
         "<br>" +
-        "Rating: " + details.rating + "/5" + "<br>" +
+        "Rating: " + rating + "<br>" +
         details.formatted_phone_number + "<br>" +
         details.vicinity;
     } else {
+      if (place.rating != undefined) rating = place.rating + "/5";
       var content = "<b>" + place.name + "</b>" +
         "<br>" +
-        "Rating: " + place.rating + "/5" + "<br>" +
+        "Rating: " + rating + "<br>" +
         place.vicinity;
     }
 

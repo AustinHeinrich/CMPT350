@@ -26,4 +26,5 @@ app.use(function (err, req, res, next) {
   return res.status(500).sendFile(path.resolve(__dirname + "/images/500.jpg"));
 });
 
+/* Begin server */
 app.listen(port, () => console.log(`App listening on port ${port}.`));
