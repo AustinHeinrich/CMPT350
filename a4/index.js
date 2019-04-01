@@ -18,7 +18,7 @@ async function main() {
   });
 
   // sql - a sql string e.g.) a SELECT *
-  db.get_async = function(sql) {
+  db.get_async = function (sql) {
     var that = this;
     return new Promise((resolve, reject) => {
       that.all(sql, (err, data) => {
@@ -28,7 +28,7 @@ async function main() {
     });
   };
 
-  db.run_async = function(sql) {
+  db.run_async = function (sql) {
     var that = this;
     return new Promise((resolve, reject) => {
       that.exec(sql, (res, err) => {

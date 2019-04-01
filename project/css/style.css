@@ -1,0 +1,47 @@
+#center-button {
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+  color: black;
+  display: inline-block;
+  font-family: 'Roboto', 'sans-serif';
+  font-size: 18px;
+  left: 200px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 8px;
+  z-index: 5;
+}
+
+#show-restaurant-switch {
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+  color: black;
+  display: inline-block;
+  font-family: 'Roboto', 'sans-serif';
+  font-size: 18px;
+  left: 275px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 8px;
+  z-index: 5;
+}
+
+#show-theatre-switch {
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+  color: black;
+  display: inline-block;
+  font-family: 'Roboto', 'sans-serif';
+  font-size: 18px;
+  left: 442px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 8px;
+  z-index: 5;
+}
