@@ -1,12 +1,11 @@
 const restaurantButton = document.getElementById("show-restaurant-switch");
 const theatreButton = document.getElementById("show-theatre-switch");
 const centerButton = document.getElementById("center-button");
-const user_loc = new google.maps.LatLng(initLat, initLng);
-const university_loc = new google.maps.LatLng(52.1334, -106.6314);
+const user_loc = new google.maps.LatLng(initLat, initLng);  // user's initial location
+const university_loc = new google.maps.LatLng(52.1334, -106.6314);  // university of saskatchewan
 var service;
-var markers = [];
+var markers = []; // list of markers on map
 var isMarked = false;
-var isPressedRest = false;
 
 /*
  * createMarker() 
@@ -98,6 +97,7 @@ theatreButton.addEventListener("click", function (event) {
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
 }, false);
+
 
 /* 
  * Show Restaurants Button 
