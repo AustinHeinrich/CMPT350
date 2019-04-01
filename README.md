@@ -4,16 +4,21 @@ Repository for Web Development
 
 Assignments are listed in order of what I think is practical.
 
+To run projects 2 through 4, 
+1) install required dependencies with 'npm i [dep]'
+2) run 'node index.js' from the command line
+3) go to 'localhost:[portNo]' in a browser, where [portNo] is 3000 for a2, a3, and a4.
+
 ### Assignment 4 - A Simple Messageboard Conencts to a SQL Database, but in JQuery Mobile
 An exact copy of Assignment 3, but the front end utilizes JQuery Mobile. 
 
 ### Assignment 3 - A Simple Messageboard Connects to a SQL Database
 
-Similar to Assignment 2 (but significantly better), this is a simple messageboard that allows the user to create messageboards and post to them. A user may delete previously created messageboards, which deletes all associated messages as well. It also makes use of authorization, using the express-basic-auth middleware (so base64 encoding), which is just hard coded in for convenience's sake.
+Similar to Assignment 2 (but significantly better), this is a simple messageboard that allows the user to create messageboards and post to them. A user may delete previously created messageboards, which deletes all associated messages. The latest post made by a user in a single session (w/o reloading the webpage) is displayed at the top, and on load the board select menu displays the messageboards in order of popularity (that is, number of messages). It also makes use of authorization, using the express-basic-auth middleware (so base64 encoding), which is just hard coded in for convenience's sake. 
 
 This project delved into SQL databases, which I found very intuitive to use. The front end utilized axios, a Promise based HTTP client for node, which was excellent to use. GET, POST, and DELETE was all the functionality I had to use for this project, all of which was very simple.
 
-The project uses nodejs, sqlite3, axios, and expressjs (+express-basic-auth).
+The project uses nodejs, sqlite3, axios, express, and +express-basic-auth.
 
 ### Assignment 2 - A Simple Messageboard using AJAX and DOM Tree Manipulation
 
