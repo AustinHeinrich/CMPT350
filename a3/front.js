@@ -17,6 +17,7 @@ var latestMsg = "";
 async function getChatRooms() {
   var boardList = document.getElementById("boardSelect");
 
+
   try {
     const res = await axios.get("/messageboards", axiosAuthentication);
     const chatrooms = res.data; // e.g.) {msgboardname: "foo"}
@@ -82,6 +83,7 @@ async function createNewBoard() {
   var newBoard = document.getElementById("newBoardEntry").value;
   var boardList = document.getElementById("boardSelect");
 
+
   document.getElementById("newBoardEntry").value = ""; // clear text
   if (newBoard == "") return;
 
@@ -109,7 +111,7 @@ async function createNewBoard() {
     console.error(error);
   }
 
-  getChatRooms();
+  getChatRooms();  
 }
 
 /*
