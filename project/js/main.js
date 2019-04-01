@@ -1,20 +1,11 @@
 const restaurantButton = document.getElementById("show-restaurant-switch");
 const theatreButton = document.getElementById("show-theatre-switch");
 const centerButton = document.getElementById("center-button");
-<<<<<<< HEAD
-const user_loc = new google.maps.LatLng(initLat, initLng);
-const university_loc = new google.maps.LatLng(52.1334, -106.6314);
-var service;
-var markers = [];
-var isMarked = false;
-var isPressedRest = false;
-=======
-const user_loc = new google.maps.LatLng(initLat, initLng);  // user's initial location
-const university_loc = new google.maps.LatLng(52.1334, -106.6314);  // university of saskatchewan
+const user_loc = new google.maps.LatLng(initLat, initLng); // user's initial location
+const university_loc = new google.maps.LatLng(52.1334, -106.6314); // university of saskatchewan
 var service;
 var markers = []; // list of markers on map
 var isMarked = false;
->>>>>>> 1579888a69d88e8b665317fca0935fef6002a37f
 
 /*
  * createMarker() 
@@ -35,18 +26,6 @@ function createMarker(place) {
   // get extra details about a place
   // if no extra found, print without them
   service.getDetails(request, function (details, status) {
-<<<<<<< HEAD
-    if (details) {
-      var content = "<b>" + details.name + "</b>" +
-        "<br>" +
-        "Rating: " + details.rating + "/5" + "<br>" +
-        details.formatted_phone_number + "<br>" +
-        details.vicinity;
-    } else {
-      var content = "<b>" + place.name + "</b>" +
-        "<br>" +
-        "Rating: " + place.rating + "/5" + "<br>" +
-=======
     var rating = "No rating.";
     if (details) {
       if (details.rating != undefined) rating = details.rating + "/5";
@@ -60,7 +39,6 @@ function createMarker(place) {
       var content = "<b>" + place.name + "</b>" +
         "<br>" +
         "Rating: " + rating + "<br>" +
->>>>>>> 1579888a69d88e8b665317fca0935fef6002a37f
         place.vicinity;
     }
 
@@ -120,10 +98,6 @@ theatreButton.addEventListener("click", function (event) {
   service.nearbySearch(request, callback);
 }, false);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 1579888a69d88e8b665317fca0935fef6002a37f
 /* 
  * Show Restaurants Button 
  */
