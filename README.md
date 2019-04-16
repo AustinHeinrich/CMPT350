@@ -5,7 +5,7 @@ Repository for Web Development
 Assignments are listed in order of what I think is practical.
 
 To run projects 2 through 4, 
-1) install required dependencies with 'npm i [dep]'
+1) install required dependencies with 'npm i'
 2) run 'node index.js' from the command line
 3) go to 'localhost:[portNo]' in a browser, where [portNo] is 3000 for a2, a3, and a4.
 
