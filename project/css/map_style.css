@@ -1,0 +1,50 @@
+#center-button,
+#show-switch,
+#sidebar-switch {
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+  color: black;
+  cursor: pointer;
+  display: relative;
+  font-family: 'Roboto', 'sans-serif';
+  font-size: 18px;
+  position: absolute;
+  text-align: center;
+  z-index: 5;
+}
+
+#center-button {
+  left: 200px;
+  padding: 10px;
+  top: 8px;
+}
+
+#show-switch {
+  /* a Select */
+  left: 275px;
+  padding: 9px;
+  top: 8px;
+
+}
+
+#sidebar-switch {
+  top: 45%;
+  font-size: 30px;
+  font-weight: bold;
+
+  border-bottom-right-radius: 90px;
+  border-top-right-radius: 90px;
+  height: 90px;
+  width: 45px;
+}
+
+#sidebar {
+  display: none;
+  position: absolute;
+  width: 25%;
+  height: 100%;
+  z-index: 10;
+  background-color: #E8E8E8;
+  border-right: 1px solid lightgrey;
+}

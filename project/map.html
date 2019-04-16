@@ -7,7 +7,9 @@
   <title>Date Nite Helper</title>
   <meta name="viewport" content="initial-scale=1.0" content="initial-scale=1.0, user-scalable=no" />
   <meta charset="utf-8" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/map_style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/sidebar_style.css" />
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <style>
     /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -26,9 +28,11 @@
 </head>
 
 <body>
-  <div id="control"></div>
+  <div id="sidebar" class="sidebar border-right">
+    <script type="text/javascript" src="/js/sidebar.js"></script>
+  </div>
   <div id="map">
-    <script type="text/javascript" src="/js/initialization.js"></script>
+    <script type="text/javascript" src="/js/initialize_map.js"></script>
   </div>
 </body>
 

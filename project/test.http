@@ -1,0 +1,23 @@
+POST http://localhost:7777/api/users/registration HTTP/1.1
+Content-Type: application/json
+
+{
+  "user": {
+    "email": "test@hotmail.com",
+    "password": "test"
+  }
+}
+
+###
+
+GET http://localhost:7777/api/users/current HTTP/1.1
+Authorization: Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RfZW1haWxAdGVzdF9lbWFpbC5jb20iLCJpZCI6IjVjYjU3ZjAwNGNkMjEyMDE5ZTJkY2I1MCIsImV4cCI6MTU2MDU4MjQwMCwiaWF0IjoxNTU1Mzk4NDAwfQ.0u2CYFL31VBdiX9NYdWmBFuPE1MBNCjIRQVToS2d5bA
+Content-Type: application/json
+
+{
+  "user": {
+    "_id": "5cb5839b07c23e01e0230bbe",
+    "email": "test@hotmail.com",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAaG90bWFpbC5jb20iLCJpZCI6IjVjYjU4MzliMDdjMjNlMDFlMDIzMGJiZSIsImV4cCI6MTU2MDU4MzU3OSwiaWF0IjoxNTU1Mzk5NTc5fQ.DCOKSaZlcbcsdCnTm6z68KQTRVmjSxuiviWBmZwWjsQ"
+  }
+}

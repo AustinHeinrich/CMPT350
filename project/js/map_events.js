@@ -1,11 +1,12 @@
-const restaurantButton = document.getElementById("show-restaurant-switch");
-const theatreButton = document.getElementById("show-theatre-switch");
 const centerButton = document.getElementById("center-button");
+const show_switch = document.getElementById("show-switch");
+const sidebar_switch = document.getElementById("sidebar-switch");
 const user_loc = new google.maps.LatLng(initLat, initLng); // user's initial location
 const university_loc = new google.maps.LatLng(52.1334, -106.6314); // university of saskatchewan
 var service;
 var markers = []; // list of markers on map
 var isMarked = false;
+var isClosed = true; // if the sidebar is closed, true
 
 /*
  * createMarker() 
@@ -74,17 +75,53 @@ function callback(results, status) {
 
 
 /*
- * Show Theatre Button
+ * Move Sidebar
+ */
+sidebar_switch.addEventListener("click", function (event) {
+  if (isClosed) { // open sidebar
+    document.getElementById("sidebar").style.display = "block";
+    event.target.innerHTML = "←";
+    event.target.style.left = "25%";
+
+    centerButton.style.left = "25.5%";
+    show_switch.style.left = "calc(25.5% + 75px)" || "-moz-calc(25.5% + 75px)";
+
+    isClosed = false;
+  } else { // close sidebar
+    document.getElementById("sidebar").style.display = "none";
+    event.target.innerHTML = "→";
+    event.target.style.left = "0%";
+
+    centerButton.style.left = "200px";
+    show_switch.style.left = "275px";
+
+    isClosed = true;
+  }
+});
+
+
+/* 
+ * Center Button 
+ * centers back on the user's location
  */
 
-// handles boldification of 'Show Theatres'
-theatreButton.addEventListener("mouseenter", function (event) {
-  event.target.style.fontWeight = "bold";
+// handles boldification of 'Center'
+centerButton.addEventListener("mouseenter", function (event) {
+  event.target.style.border = "thin solid #808080";
 }, false);
-theatreButton.addEventListener("mouseleave", function (event) {
-  event.target.style.fontWeight = "normal";
+centerButton.addEventListener("mouseleave", function (event) {
+  event.target.style.border = "none";
 }, false);
 
+centerButton.addEventListener("click", function (event) {
+  map.setCenter(user_loc);
+});
+
+/*
+ * Show Item
+ */
+
+/*
 // gets a number of *open* theatres and places markers on them
 theatreButton.addEventListener("click", function (event) {
   event.target.style.fontWeight = 500; // make it look pressed
@@ -96,12 +133,12 @@ theatreButton.addEventListener("click", function (event) {
 
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
-}, false);
+}, false); */
 
 /* 
  * Show Restaurants Button 
  */
-
+/*
 //handles boldification of 'Show Restaurants'
 restaurantButton.addEventListener("mouseenter", function (event) {
   event.target.style.fontWeight = "bold";
@@ -121,23 +158,4 @@ restaurantButton.addEventListener("click", function (event) {
 
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
-}, false);
-
-
-/* 
- * Center Button 
- * centers back on the user's location
- */
-
-// handles boldification of 'Center'
-centerButton.addEventListener("mouseenter", function (event) {
-  event.target.style.fontWeight = "bold";
-}, false);
-centerButton.addEventListener("mouseleave", function (event) {
-  event.target.style.fontWeight = "normal";
-}, false);
-
-centerButton.addEventListener("click", function (event) {
-  event.target.style.fontWeight = 500; // make it look pressed
-  map.setCenter(user_loc);
-})
+}, false); */

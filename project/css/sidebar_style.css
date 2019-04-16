@@ -1,0 +1,58 @@
+#login-text {
+  text-align: center;
+  font-family: 'Roboto', 'sans-serif';
+}
+
+#msg-user {
+  text-align: center;
+  color: red;
+  top: 10%;
+  position: relative;
+  font-family: 'Roboto', 'sans-serif';
+}
+
+#register-suggest {
+  position: relative;
+  text-align: right;
+  right: 5%;
+  top: 10%;
+  font-family: 'Roboto', 'sans-serif';
+}
+
+#uname,
+#pwd,
+#submit-user {
+  top: 10%;
+  left: 5%;
+  width: 90%;
+  position: relative;
+  font-family: 'Roboto', 'sans-serif';
+}
+
+#uname,
+#pwd {
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#submit-user {
+  background-color: #2828FF;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#user-display-name {
+  font-size: 24;
+  font-weight: bold;
+  font-family: 'Roboto', 'sans-serif';
+  position: absolute;
+  bottom: 0;
+  padding: 10px 10px 10px 10px;
+}
